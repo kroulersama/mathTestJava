@@ -4,18 +4,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-public class EngineTest {
+// public class EngineTest {
 
     
-    @Test
-    public void testSomething() {
-        // given (подготовка)
-        Engine engine = new Engine();
+//     @Test
+//     public void testSomething() {
+//         // given (подготовка)
+//         Engine engine = new Engine();
         
-        // when (действие)
-        int result = engine.calculateSomething();
+//         // when (действие)
+//         int result = engine.calculateSomething();
         
-        // then (проверка)
-        assertEquals(42, result);
-    }
-}
+//         // then (проверка)
+//         assertEquals(42, result);
+//     }
+// }

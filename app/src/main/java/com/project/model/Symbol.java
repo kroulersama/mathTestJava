@@ -1,10 +1,10 @@
 package com.project.model;
 
 public enum Symbol {
-    RABBIT(2),
-    HORSE(10),
-    WORM(1),
-    GOOSE(5);
+    RAB(2),
+    HRS(10),
+    WRM(1),
+    GOS(5);
 
     private final int payout;
 
