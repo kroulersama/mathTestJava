@@ -1,5 +1,7 @@
 package com.project.model;
 
+import java.util.Random;
+
 public enum Symbol {
     RAB(2),
     HRS(10),
@@ -14,5 +16,12 @@ public enum Symbol {
     
     public int getPayout() {
         return payout;
+    }
+    
+    // getRandom выводи рандомный символ
+    public static Symbol getRandom(Random random){
+        Symbol[] valueSymbols = Symbol.values();
+        return valueSymbols[random.nextInt(valueSymbols.length)];
+
     }
 }

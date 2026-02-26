@@ -1,28 +1,39 @@
 package com.project.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import lombok.Data;
 
 @Data
+// Reel Один барабан и его логика
 public class Reel {
-    private List<Symbol> symbols;
+    private List<Symbol> symbols = new ArrayList<>();
     private int position;
-    private Random random;
 
     // Конструктор
     public Reel(Random random){
-        List<Symbol> symbolsOfReel = List.of(
-            Symbol.GOS,
-            Symbol.HRS,
-            Symbol.RAB,
-            Symbol.WRM
-        );
-        this.symbols = symbolsOfReel;
-        this.random = random;
+        int size = 4;
+        for (int i = 0; i < size; i++) {
+            Symbol randomSymbol = Symbol.values()[random.nextInt(Symbol.values().length)];
+            symbols.add(randomSymbol);
+        }
         this.position = random.nextInt(symbols.size());
     }
 
+    // Конструктор с определением количества символов в барабане
+    public Reel(Random random, int size){
+        for (int i = 0; i < size; i++) {
+            Symbol randomSymbol = Symbol.values()[random.nextInt(Symbol.values().length)];
+            symbols.add(randomSymbol);
+        }
+        this.position = random.nextInt(symbols.size());
+    }
+    
+    public Symbol get(int col){
+        return symbols.get(col);
+    }
     // GetVisibleSymbol Показывает символы радиусом 1 относительно позиции
     public List<Symbol> getVisibleSymbol(){
         int size = symbols.size();
@@ -36,8 +47,7 @@ public class Reel {
 
     // Spin - рандомизирует позицию
     public void spin(Random random){
-        this.random = random;
-        position = this.random.nextInt(symbols.size());
+        position = random.nextInt(symbols.size());
     }
 
 }

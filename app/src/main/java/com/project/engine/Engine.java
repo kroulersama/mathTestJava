@@ -1,45 +1,47 @@
 package com.project.engine;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import com.project.model.Reel;
 
-
+// Engine основная логика игры
 public class Engine {
-    private Reel reel1;
-    private Reel reel2;
-    private Reel reel3;
-    private Random random = new Random();
-    private List<Reel> reelList;
+    private List<Reel> reels = new ArrayList<>();
+    private Random random;
 
     // Конструктор
     public Engine(){
-        reel1 = new Reel(random);
-        reel2 = new Reel(random);
-        reel3 = new Reel(random);
-
-        reelList = List.of(
-        reel1,
-        reel2,
-        reel3
-    );
+        random = new Random();
+        for (int i = 0; i < 3; i++)
+        {
+            reels.add(new Reel(random));
+        }
+    }
+    // Конструктор для тестов
+    public Engine(Random random){
+        this.random = random;
+        for (int i = 0; i < 3; i++)
+        {
+            reels.add(new Reel(random));
+        }
     }
 
-    //getVisible
+    // getVisible - выводит текущие позиции барабанов
     public void getVisible(){
-        for (Reel real : reelList){
-            System.out.println(real.getVisibleSymbol());
+        for (Reel reel : reels){
+            System.out.println(reel.getVisibleSymbol());
         }
     }
 
-        // Spin - рандомизирует позицию
+    // Spin - рандомизирует позицию
     public void spin(){
-        for (Reel reel : reelList){
+        for (Reel reel : reels){
             reel.spin(random);
-            System.out.println();
         }
+        System.out.println();
     }
 
 }
