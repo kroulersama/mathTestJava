@@ -2,6 +2,7 @@ package com.project.model;
 
 import java.util.Random;
 
+//Symbol нумератор символов
 public enum Symbol {
     RAB(2),
     HRS(10),
@@ -18,7 +19,7 @@ public enum Symbol {
         return payout;
     }
     
-    // getRandom выводи рандомный символ
+    // getRandom возвращает рандомный символ
     public static Symbol getRandom(Random random){
         Symbol[] valueSymbols = Symbol.values();
         return valueSymbols[random.nextInt(valueSymbols.length)];

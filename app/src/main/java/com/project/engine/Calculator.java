@@ -5,17 +5,24 @@ import java.util.List;
 import com.project.model.Line;
 import com.project.model.Reel;
 import com.project.model.Symbol;
-// Calculator Все вычисления
+
+
+// Calculator все вычисления
 public class Calculator {
 
+    // Конструктор
+    public Calculator(){
+        // нечего инициализировать
+    }
+
     // calculateSumm логика вычисления
-    public static int calculateSumm(List<Reel> reels){
+    public int calculateWin(List<Reel> reels){
         Symbol[][] grid = Line.convertSymbols(reels);
-        return isWining(grid);
+        return isWinning(grid);
     }
 
     // isWining проверяет комбинации, сумирует выиграш и возвращает сумму с 1 прокрута
-    private static int isWining(Symbol[][] grid){
+    private static int isWinning(Symbol[][] grid){
         int winSum = 0;
         for (int i =0 ; i < 2; i++){
             if (grid[i][0].equals(grid[i][1]) && grid[i][0].equals(grid[i][2])) winSum += grid[i][0].getPayout();

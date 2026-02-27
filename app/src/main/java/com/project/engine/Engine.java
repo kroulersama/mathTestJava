@@ -4,6 +4,7 @@ package com.project.engine;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import com.project.model.Reel;
 
@@ -20,6 +21,7 @@ public class Engine {
             reels.add(new Reel(random));
         }
     }
+
     // Конструктор для тестов
     public Engine(Random random){
         this.random = random;
@@ -27,6 +29,21 @@ public class Engine {
         {
             reels.add(new Reel(random));
         }
+    }
+    
+    // getNumberOfStart функция для запуска
+    public int getNumberOfStart(Scanner scanner){
+        while (!scanner.hasNextInt()) {
+            System.out.print("Это не число... ");
+            scanner.next();
+        }
+
+        return scanner.nextInt();
+    }
+
+    //getReels возвращает reels
+    public List<Reel> getReels(){
+        return reels;
     }
 
     // getVisible - выводит текущие позиции барабанов
@@ -41,7 +58,6 @@ public class Engine {
         for (Reel reel : reels){
             reel.spin(random);
         }
-        System.out.println();
     }
 
 }

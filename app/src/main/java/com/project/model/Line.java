@@ -2,21 +2,17 @@ package com.project.model;
 
 import java.util.List;
 
+
+//Line логика внутри линий
 public class Line {
-    // private int[][] positions;
-    
-    // // Конструктор
-    // public Line(int[][] positions){
-    //     if(positions.length != 3){
-    //         throw new IllegalArgumentException("Должно быть 3 позиции");
-    //     }
-    //     this.positions = positions;
-    // }
 
-
+    // Конструктор
+    private Line(){
+        
+    }
     // convertSymbols регресивно возвращает 2-мерный массив с символами из листа барабанов
     public static Symbol[][] convertSymbols(List<Reel> reels){
-        Symbol[][] grid = new Symbol[2][2];
+        Symbol[][] grid = new Symbol[3][3];
         for (int col = 0; col < 3; col++) {
             List<Symbol> visible = reels.get(col).getVisibleSymbol();
             grid[0][col] = visible.get(0);

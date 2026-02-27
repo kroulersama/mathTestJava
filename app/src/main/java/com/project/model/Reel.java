@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import lombok.Data;
 
-@Data
 // Reel Один барабан и его логика
 public class Reel {
     private List<Symbol> symbols = new ArrayList<>();
@@ -30,10 +28,7 @@ public class Reel {
         }
         this.position = random.nextInt(symbols.size());
     }
-    
-    public Symbol get(int col){
-        return symbols.get(col);
-    }
+
     // GetVisibleSymbol Показывает символы радиусом 1 относительно позиции
     public List<Symbol> getVisibleSymbol(){
         int size = symbols.size();
@@ -43,7 +38,6 @@ public class Reel {
             symbols.get((position + 2) % size)
         );
     }
-
 
     // Spin - рандомизирует позицию
     public void spin(Random random){
