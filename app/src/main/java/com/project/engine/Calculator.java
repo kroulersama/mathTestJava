@@ -10,13 +10,12 @@ import com.project.model.Symbol;
 // Calculator все вычисления
 public class Calculator {
 
-    // Конструктор
-    public Calculator(){
-        // нечего инициализировать
+    private Calculator(){
+
     }
 
     // calculateSumm логика вычисления
-    public int calculateWin(List<Reel> reels){
+    public static int calculateWin(List<Reel> reels){
         Symbol[][] grid = Line.convertSymbols(reels);
         return isWinning(grid);
     }
@@ -24,7 +23,7 @@ public class Calculator {
     // isWining проверяет комбинации, сумирует выиграш и возвращает сумму с 1 прокрута
     private static int isWinning(Symbol[][] grid){
         int winSum = 0;
-        for (int i =0 ; i < 2; i++){
+        for (int i =0 ; i < 3; i++){
             if (grid[i][0].equals(grid[i][1]) && grid[i][0].equals(grid[i][2])) winSum += grid[i][0].getPayout();
         }
         if (grid[0][0].equals(grid[1][1]) && grid[0][0].equals(grid[2][2])) winSum += grid[0][0].getPayout();

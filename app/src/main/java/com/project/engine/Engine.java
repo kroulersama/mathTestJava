@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import com.project.model.Reel;
+import com.project.repository.ReelData;
 
 // Engine основная логика игры
 public class Engine {
@@ -16,19 +17,17 @@ public class Engine {
     // Конструктор
     public Engine(){
         random = new Random();
-        for (int i = 0; i < 3; i++)
-        {
-            reels.add(new Reel(random));
-        }
+        reels.add(new Reel(ReelData.getReel1Symbols(), random));
+        reels.add(new Reel(ReelData.getReel2Symbols(), random));
+        reels.add(new Reel(ReelData.getReel3Symbols(), random));
     }
 
     // Конструктор для тестов
     public Engine(Random random){
         this.random = random;
-        for (int i = 0; i < 3; i++)
-        {
-            reels.add(new Reel(random));
-        }
+        reels.add(new Reel(ReelData.getReel1Symbols(), random));
+        reels.add(new Reel(ReelData.getReel2Symbols(), random));
+        reels.add(new Reel(ReelData.getReel3Symbols(), random));
     }
     
     // getNumberOfStart функция для запуска

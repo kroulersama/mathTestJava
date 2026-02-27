@@ -21,6 +21,17 @@ public class Line {
         }
         return grid;
     }
+
+    // Список линий выплат (5 линий)
+    public static List<int[]> getPayLines() {
+        return List.of(
+            new int[]{0, 0, 0},  // Line 1: верхний ряд
+            new int[]{1, 1, 1},  // Line 2: средний ряд
+            new int[]{2, 2, 2},  // Line 3: нижний ряд
+            new int[]{0, 1, 2},  // Line 4: диагональ \
+            new int[]{2, 1, 0}   // Line 5: диагональ /
+        );
+    }
 }
 
 

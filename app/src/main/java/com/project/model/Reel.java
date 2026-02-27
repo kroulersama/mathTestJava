@@ -11,12 +11,8 @@ public class Reel {
     private int position;
 
     // Конструктор
-    public Reel(Random random){
-        int size = 4;
-        for (int i = 0; i < size; i++) {
-            Symbol randomSymbol = Symbol.values()[random.nextInt(Symbol.values().length)];
-            symbols.add(randomSymbol);
-        }
+    public Reel(List<Symbol> symbols,Random random){
+        this.symbols = symbols;
         this.position = random.nextInt(symbols.size());
     }
 
@@ -27,6 +23,12 @@ public class Reel {
             symbols.add(randomSymbol);
         }
         this.position = random.nextInt(symbols.size());
+    }
+
+    // Конструктор с определением позиции и символов(для тестов)
+    public Reel(List<Symbol> symbols, int position){
+        this.symbols = symbols;
+        this.position = position;
     }
 
     // GetVisibleSymbol Показывает символы радиусом 1 относительно позиции
@@ -42,6 +44,10 @@ public class Reel {
     // Spin - рандомизирует позицию
     public void spin(Random random){
         position = random.nextInt(symbols.size());
+    }
+
+    public int getPosition(){
+        return position;
     }
 
 }

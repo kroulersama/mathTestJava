@@ -4,10 +4,16 @@ import java.util.Random;
 
 //Symbol нумератор символов
 public enum Symbol {
-    RAB(2),
-    HRS(10),
-    WRM(1),
-    GOS(5);
+    WI(50),   // Wild
+    H1(25),   // High 1
+    M1(15),   // Medium 1
+    M2(10),   // Medium 2
+    M3(8),    // Medium 3
+    L1(5),    // Low 1
+    L2(3),    // Low 2
+    L3(2),    // Low 3
+    L4(1),    // Low 4
+    EM(0);    // Empty
 
     private final int payout;
 
