@@ -1,5 +1,6 @@
 # mathTestJava - Тестовое приложение демонстрирующая работы слот-машины
 
+```
 src/main/java/com/project/
 ├── model/ # Модели данных
 │ ├── Symbol.java # Enum символов с выплатами
@@ -16,3 +17,4 @@ src/test/java/com/project/
 ├── engine/
 │ └── CalculatorTest.java # Unit тесты для калькулятора
 └── MathTest.java # Математический тест RTP
+```
