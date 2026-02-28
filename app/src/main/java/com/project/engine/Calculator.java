@@ -28,7 +28,7 @@ public class Calculator {
         for(int[] i : payline){
             Symbol[] lineSymbols = new Symbol[]{grid[i[0]], grid[i[1]], grid[i[2]]};
             int wildNum = 0;
-            Symbol mainSymbol = Symbol.EM;
+            Symbol mainSymbol = null;
 
 
             for (Symbol k : lineSymbols){
@@ -49,7 +49,7 @@ public class Calculator {
                     winSum += mainSymbol.getPayout()[2];
                 } else if (totalCount == 2) {
                     winSum += mainSymbol.getPayout()[1];
-                } else if (totalCount == 1 && mainSymbol == Symbol.H1) {
+                } else if (totalCount == 1) {
                     winSum += mainSymbol.getPayout()[0];
                 }
             }

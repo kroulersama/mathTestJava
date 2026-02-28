@@ -15,16 +15,16 @@ class CalculatorTest {
     void testCalculateWin_NoWin() {
         // Подготовка - нет совпадений на линиях
         List<Symbol> symbols1 = List.of(Symbol.L1, Symbol.L2, Symbol.L3);
-        List<Symbol> symbols2 = List.of(Symbol.L2, Symbol.L3, Symbol.L4);
+        List<Symbol> symbols2 = List.of(Symbol.L2, Symbol.L4, Symbol.L4);
         List<Symbol> symbols3 = List.of(Symbol.L3, Symbol.L4, Symbol.L1);
         
-        Reel reel1 = new Reel(symbols1, 1);
-        Reel reel2 = new Reel(symbols2, 1);
-        Reel reel3 = new Reel(symbols3, 1);
+        Reel reel1 = new Reel(symbols1, 0);
+        Reel reel2 = new Reel(symbols2, 0);
+        Reel reel3 = new Reel(symbols3, 0);
         
         List<Reel> reels = List.of(reel1, reel2, reel3);
 
-        // Действие
+        // Реализация
         int result = Calculator.calculateWin(reels);
 
         // Проверка
@@ -33,8 +33,8 @@ class CalculatorTest {
 
     @Test
     void testCalculateWin_HorizontalLine() {
-        // Подготовка - верхняя линия из L1 (выплата 5)
-        List<Symbol> symbols1 = List.of(Symbol.L1, Symbol.L1, Symbol.L2);
+        // Подготовка - верхняя линия (0,3,6) из L1 (выплата 5)
+        List<Symbol> symbols1 = List.of(Symbol.L1, Symbol.L2, Symbol.L1);
         List<Symbol> symbols2 = List.of(Symbol.L1, Symbol.L3, Symbol.L4);
         List<Symbol> symbols3 = List.of(Symbol.L1, Symbol.L4, Symbol.L2);
         
@@ -43,17 +43,17 @@ class CalculatorTest {
         Reel reel3 = new Reel(symbols3, 0);
         
         List<Reel> reels = List.of(reel1, reel2, reel3);
-
-        // Действие
+        
+        // Реализация
         int result = Calculator.calculateWin(reels);
 
         // Проверка
-        assertEquals(Symbol.L1.getPayout(), result);
+        assertEquals(Symbol.L1.getPayout()[2], result);
     }
 
     @Test
     void testCalculateWin_DiagonalLine() {
-        // Подготовка - главная диагональ из M1 (выплата 15)
+        // Подготовка - диагональ \ (0,4,8) из M1 (выплата 15)
         List<Symbol> symbols1 = List.of(Symbol.M1, Symbol.L2, Symbol.L3);
         List<Symbol> symbols2 = List.of(Symbol.L4, Symbol.M1, Symbol.L1);
         List<Symbol> symbols3 = List.of(Symbol.L2, Symbol.L3, Symbol.M1);
@@ -63,12 +63,12 @@ class CalculatorTest {
         Reel reel3 = new Reel(symbols3, 0);
         
         List<Reel> reels = List.of(reel1, reel2, reel3);
-
-        // Действие
+        
+        // Реализация
         int result = Calculator.calculateWin(reels);
 
         // Проверка
-        assertEquals(Symbol.M1.getPayout(), result);
+        assertEquals(Symbol.M1.getPayout()[2], result);
     }
 
     @Test
@@ -84,11 +84,11 @@ class CalculatorTest {
 
         List<Reel> reels = List.of(reel1, reel2, reel3);
 
-        int expectedWin = Symbol.L2.getPayout() + Symbol.M2.getPayout(); // 3 + 10 = 13
-
-        // Действие
+        int expectedWin = Symbol.L2.getPayout()[2] + Symbol.M2.getPayout()[2]; // 3 + 10 = 13
+        
+        // Реализация
         int result = Calculator.calculateWin(reels);
-
+        
         // Проверка
         assertEquals(expectedWin, result);
     }
@@ -106,11 +106,77 @@ class CalculatorTest {
         
         List<Reel> reels = List.of(reel1, reel2, reel3);
 
-        int expectedWin = 5 * Symbol.H1.getPayout(); // 5 × 25 = 125
-
-        // Действие
+        int expectedWin = 5 * Symbol.H1.getPayout()[2]; // 5 × 25 = 125
+        
+        // Реализация
         int result = Calculator.calculateWin(reels);
 
+        // Проверка
+        assertEquals(expectedWin, result);
+    }
+
+    @Test
+    void testCalculateWin_TwoOfKind() {
+        // Подготовка - 2 H1 + Wild = выплата за 3 (25)
+        List<Symbol> symbols1 = List.of(Symbol.H1, Symbol.L2, Symbol.L3);
+        List<Symbol> symbols2 = List.of(Symbol.WI, Symbol.L1, Symbol.L4);
+        List<Symbol> symbols3 = List.of(Symbol.H1, Symbol.L4, Symbol.L2);
+        
+        Reel reel1 = new Reel(symbols1, 0);
+        Reel reel2 = new Reel(symbols2, 0);
+        Reel reel3 = new Reel(symbols3, 0);
+        
+        List<Reel> reels = List.of(reel1, reel2, reel3);
+
+        int expectedWin = Symbol.H1.getPayout()[2] + Symbol.H1.getPayout()[0] + Symbol.H1.getPayout()[0];
+        
+        // Реализация
+        int result = Calculator.calculateWin(reels);
+        
+        // Проверка
+        assertEquals(expectedWin, result);
+    }
+
+    @Test
+    void testCalculateWin_ThreeWild() {
+        // Подготовка - 3 Wild = 50
+        List<Symbol> symbols1 = List.of(Symbol.WI, Symbol.L2, Symbol.L3);
+        List<Symbol> symbols2 = List.of(Symbol.WI, Symbol.L1, Symbol.L4);
+        List<Symbol> symbols3 = List.of(Symbol.WI, Symbol.L4, Symbol.L2);
+        
+        Reel reel1 = new Reel(symbols1, 0);
+        Reel reel2 = new Reel(symbols2, 0);
+        Reel reel3 = new Reel(symbols3, 0);
+        
+        List<Reel> reels = List.of(reel1, reel2, reel3);
+
+        int expectedWin = Symbol.WI.getPayout()[2]; // 50
+        
+        // Реализация
+        int result = Calculator.calculateWin(reels);
+        
+        // Проверка
+        assertEquals(expectedWin, result);
+    }
+
+    @Test
+    void testCalculateWin_H1Single() {
+        // Подготовка - одиночный H1 с Wild (должен дать 1 за 1)
+        List<Symbol> symbols1 = List.of(Symbol.H1, Symbol.L2, Symbol.L3);
+        List<Symbol> symbols2 = List.of(Symbol.WI, Symbol.L1, Symbol.L4);
+        List<Symbol> symbols3 = List.of(Symbol.WI, Symbol.L4, Symbol.L2);
+        
+        Reel reel1 = new Reel(symbols1, 0);
+        Reel reel2 = new Reel(symbols2, 0);
+        Reel reel3 = new Reel(symbols3, 0);
+        
+        List<Reel> reels = List.of(reel1, reel2, reel3);
+
+        int expectedWin = Symbol.H1.getPayout()[2] + Symbol.H1.getPayout()[0];
+        
+        // Реализация
+        int result = Calculator.calculateWin(reels);
+        
         // Проверка
         assertEquals(expectedWin, result);
     }

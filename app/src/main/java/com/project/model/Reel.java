@@ -46,6 +46,7 @@ public class Reel {
         position = random.nextInt(symbols.size());
     }
 
+    // Get - возвращает текущую позицию
     public int getPosition(){
         return position;
     }

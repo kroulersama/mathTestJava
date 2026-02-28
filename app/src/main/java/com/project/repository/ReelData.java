@@ -72,6 +72,7 @@ public class ReelData {
         Symbol.M2, Symbol.L4
     );
     
+    //Функции возвращающие барабаны
     public static List<Symbol> getReel1Symbols() {
         return new ArrayList<>(REEL1_SYMBOLS);
     }

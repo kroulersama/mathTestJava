@@ -2,7 +2,7 @@ package com.project.model;
 
 import java.util.Random;
 
-//Symbol нумератор символов
+// Symbol нумератор символов
 public enum Symbol {
     WI(new int[]{0,0,50}),   // Wild
     H1(new int[]{1,10,25}),   // High 1
@@ -17,10 +17,12 @@ public enum Symbol {
 
     private final int[] payout;
 
+    // Конструктор
     Symbol(int[] payout) {
         this.payout = payout;
     }
 
+    // getPayout возвращает массив выплат
     public int[] getPayout() {
         return payout;
     }

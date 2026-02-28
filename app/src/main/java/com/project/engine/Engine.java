@@ -40,7 +40,7 @@ public class Engine {
         return scanner.nextInt();
     }
 
-    //getReels возвращает reels
+    // getReels возвращает reels
     public List<Reel> getReels(){
         return reels;
     }
