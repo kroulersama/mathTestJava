@@ -11,13 +11,17 @@ public class Line {
         
     }
     // convertSymbols регресивно возвращает 2-мерный массив с символами из листа барабанов
-    public static Symbol[][] convertSymbols(List<Reel> reels){
-        Symbol[][] grid = new Symbol[3][3];
+    public static Symbol[] convertSymbols(List<Reel> reels){
+        Symbol[] grid = new Symbol[9];
+        int numCol = 0;
         for (int col = 0; col < 3; col++) {
             List<Symbol> visible = reels.get(col).getVisibleSymbol();
-            grid[0][col] = visible.get(0);
-            grid[1][col] = visible.get(1);
-            grid[2][col] = visible.get(2);
+            grid[numCol] = visible.get(0);
+            numCol ++;
+            grid[numCol] = visible.get(1);
+            numCol ++;
+            grid[numCol] = visible.get(2);
+            numCol ++;
         }
         return grid;
     }
@@ -25,11 +29,11 @@ public class Line {
     // Список линий выплат (5 линий)
     public static List<int[]> getPayLines() {
         return List.of(
-            new int[]{0, 0, 0},  // Line 1: верхний ряд
-            new int[]{1, 1, 1},  // Line 2: средний ряд
-            new int[]{2, 2, 2},  // Line 3: нижний ряд
-            new int[]{0, 1, 2},  // Line 4: диагональ \
-            new int[]{2, 1, 0}   // Line 5: диагональ /
+            new int[]{0, 3, 6},  // Line 1: верхний ряд
+            new int[]{1, 4, 7},  // Line 2: средний ряд
+            new int[]{2, 5, 8},  // Line 3: нижний ряд
+            new int[]{0, 4, 8},  // Line 4: диагональ \
+            new int[]{2, 4, 6}   // Line 5: диагональ /
         );
     }
 }

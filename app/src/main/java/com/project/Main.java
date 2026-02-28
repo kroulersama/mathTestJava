@@ -19,8 +19,7 @@ public class Main {
 
         System.out.print("введите количество ставок: ");
         
-        int ticket = 2000;
-        //engine.getNumberOfStart(scanner);
+        int ticket = engine.getNumberOfStart(scanner);
 
         for (int i = 0; i < ticket; i++){
             engine.spin();
